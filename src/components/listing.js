@@ -21,6 +21,12 @@ class Listing extends React.Component {
     return (
       <SafeAreaView style={styles.container}>
         {/* <Text>{newdata[0].storeId}</Text> */}
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Search');
+          }}>
+          <Text>Move to next</Text>
+        </TouchableOpacity>
         <FlatList
           data={newdata}
           renderItem={({item}) => {
@@ -30,8 +36,6 @@ class Listing extends React.Component {
                 <Text>{item.storeName}</Text>
                 <Text>{item.city}</Text>
                 <Text>{item.storeAddress}</Text>
-                <Text>{item.storezipcode}</Text>
-
               </View>
             );
           }}
@@ -41,7 +45,8 @@ class Listing extends React.Component {
     );
   }
   componentDidMount() {
-    this.props.dataHomeApi();
+    this.props.dataHomeApi(this.props.headerTag);
+    console.log(this.props);
   }
 }
 
@@ -56,15 +61,14 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 100,
     backgroundColor: '#d98cb3',
-    borderRadius:10,
-    padding:10,
-    marginVertical:5,
-
+    borderRadius: 10,
+    padding: 10,
+    marginVertical: 5,
   },
 });
 
 const mapStateToProps = state => ({
-  //headerTag: state.homeReducer.header,
+  headerTag: state.homeReducer.header,
   newdata: state.authenticateReducer.isData,
 });
 

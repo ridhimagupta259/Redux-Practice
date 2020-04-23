@@ -3,7 +3,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import Home from './src/components/home';
 import Listing from './src/components/listing';
 import Login from './src/components/login';
-// import Datalist from './src/components/datalist';
+import Search from './src/components/search';
+import Concept from './src/components/concept'
+
 
 import * as React from 'react';
 import {Provider} from 'react-redux';
@@ -15,8 +17,9 @@ function MyStack() {
     <Stack.Navigator>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Concept" component={Concept} />
       <Stack.Screen name="Listing" component={Listing} />
-      {/* <Stack.Screen name="Datalist" component={Datalist} /> */}
+      <Stack.Screen name="Search" component={Search} />
     </Stack.Navigator>
   );
 }
