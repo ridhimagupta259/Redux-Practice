@@ -4,8 +4,9 @@ import Home from './src/components/home';
 import Listing from './src/components/listing';
 import Login from './src/components/login';
 import Search from './src/components/search';
-import Concept from './src/components/concept'
-
+import Concept from './src/components/concept';
+import Details from './src/components/details';
+import Splash from './src/components/splash';
 
 import * as React from 'react';
 import {Provider} from 'react-redux';
@@ -15,11 +16,37 @@ const Stack = createStackNavigator();
 function MyStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Concept" component={Concept} />
-      <Stack.Screen name="Listing" component={Listing} />
-      <Stack.Screen name="Search" component={Search} />
+      {/* <Stack.Screen name="Home" component={Home} /> */}
+      <Stack.Screen
+        name="Splash"
+        component={Splash}
+        options={{header: () => null}}
+      />
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{header: () => null}}
+      />
+      <Stack.Screen
+        name="Concept"
+        component={Concept}
+        options={{header: () => null}}
+      />
+      <Stack.Screen
+        name="Listing"
+        component={Listing}
+        options={{header: () => null}}
+      />
+      <Stack.Screen
+        name="Search"
+        component={Search}
+        options={{header: () => null}}
+      />
+      <Stack.Screen
+        name="Details"
+        component={Details}
+        options={{header: () => null}}
+      />
     </Stack.Navigator>
   );
 }

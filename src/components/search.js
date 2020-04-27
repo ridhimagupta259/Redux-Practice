@@ -2,15 +2,15 @@ import React from 'react';
 import {
   Text,
   StyleSheet,
-  SafeAreaView,
   TouchableOpacity,
   View,
-  ScrollView,
   FlatList,
   TextInput,
+  Image,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {searchApi} from '../services/Authenticate/action';
+import {colorConstants, imageConstants} from '../config/constants';
 class Listing extends React.Component {
   constructor(props) {
     super(props);
@@ -25,65 +25,91 @@ class Listing extends React.Component {
   }
 
   render() {
-    const {navigation, searchdata, headerTag, isloading} = this.props;
+    const {navigation, searchdata} = this.props;
     console.log(this.props);
-    if (isloading === true) {
-      return <Text>Nothing found</Text>;
-    }
     return (
-      <SafeAreaView style={styles.container}>
-        {/* <Text>{newdata[0].storeId}</Text> */}
-        <TextInput
-          style={styles.TextInputView}
-          autoCapitalize="none"
-          onChangeText={keyword => this.setState({keyword})}
-        />
-        {/* <TouchableOpacity
-          onPress={() => {
-            this.props.searchHomeApi(this.state.keyword, this.props.headerTag);
-          }}>
-          <Text>search</Text>
-        </TouchableOpacity> */}
-        <FlatList
-          data={searchdata}
-          renderItem={({item}) => {
-            return (
-              <View style={styles.textEdit}>
-                <Text>{item.productName}</Text>
-              </View>
-            );
-          }}
-          keyExtractor={item => item.id}
-        />
-      </SafeAreaView>
+      <View style={styles.container}>
+        <View style={styles.concept}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Listing');
+            }}>
+            <Image style={styles.backimage} source={imageConstants.backArrow} />
+          </TouchableOpacity>
+          <TextInput
+            style={styles.TextInputView}
+            autoCapitalize="none"
+            placeholder="Search..."
+            placeholderTextColor="#808080"
+            onChangeText={keyword => this.setState({keyword})}
+          />
+        </View>
+        <View style={styles.lowerView}>
+          <FlatList
+            data={searchdata}
+            renderItem={({item}) => {
+              return (
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('Details', {data: item});
+                  }}>
+                  <View style={styles.textEdit}>
+                    <Text>{item.productName}</Text>
+                  </View>
+                </TouchableOpacity>
+              );
+            }}
+            keyExtractor={item => item.id}
+          />
+        </View>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#E3DFDE',
+    backgroundColor: colorConstants.white,
     flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+  },
+  lowerView: {
+    flex: 0.87,
+    backgroundColor: colorConstants.white,
+    marginTop: 10,
   },
   textEdit: {
-    width: 300,
-    height: 50,
-    backgroundColor: '#d98cb3',
-    borderRadius: 10,
-    padding: 10,
+    height: 70,
+    padding: 20,
     marginVertical: 5,
+    justifyContent: 'center',
+    borderBottomWidth: 0.3,
+    borderBottomColor: colorConstants.greyStrip,
   },
   TextInputView: {
     height: 40,
     width: 300,
-    marginHorizontal: 20,
-    marginBottom: 20,
+    fontSize: 20,
+    marginLeft: 20,
+    marginBottom: 15,
+  },
+  concept: {
+    flex: 0.13,
+    flexDirection: 'row',
+    backgroundColor: colorConstants.white,
+    alignItems: 'flex-end',
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 0.7},
+    shadowOpacity: 0.38,
+    shadowRadius: 5.0,
+
+    elevation: 1,
+  },
+  backimage: {
+    height: 28,
+    width: 28,
     marginTop: 20,
-    backgroundColor: 'white',
-    borderBottomColor: '#000',
-    borderBottomWidth: 1,
+    marginLeft: 10,
+    marginBottom: 20,
   },
 });
 

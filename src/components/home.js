@@ -51,9 +51,9 @@ const mapStateToProps = state => ({
   //flag: state.homeReducer.homeFlag,
 });
 
-const mapDispatchToProps = state => ({
+const mapDispatchToProps = {
   //toggleHomeFlag: toggleFlag,
-});
+};
 
 export default connect(
   mapStateToProps,

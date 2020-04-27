@@ -4,17 +4,16 @@ import {
   SEARCH_START,
   CONCEPT_DATA,
 } from './constant';
-
+import config from '../../config/env';
 export const dataApi = head => dispatch => {
-  fetch(
-    'https://admin-stage.priskoll.occdev.axfood.se/axfood/axfood-product-scan/stores',
-    {
-      method: 'GET',
-      headers: {
-        authorization: head,
-      },
+  let apiConfig = config.apiURl;
+  let storeURL = config.apiConfig.tempStoreApi.storeListHandle;
+  fetch(apiConfig + storeURL, {
+    method: 'GET',
+    headers: {
+      authorization: head,
     },
-  )
+  })
     .then(response => {
       return response.json();
     })
@@ -28,10 +27,9 @@ export const dataApi = head => dispatch => {
 };
 
 export const searchApi = (keyword, head) => dispatch => {
-  const url =
-    'https://admin-stage.priskoll.occdev.axfood.se/axfood/axfood-product-scan/searchResults/' +
-    keyword +
-    '?';
+  let apiConfig = config.apiURl;
+  let searchURL = config.apiConfig.tempStoreApi.searchListHandle;
+  const url = apiConfig + searchURL + keyword + '?';
   console.log(url);
   fetch(url, {
     method: 'GET',
@@ -60,15 +58,14 @@ export const searchApi = (keyword, head) => dispatch => {
 };
 
 export const conceptApi = head => dispatch => {
-  fetch(
-    'https://admin-rel.priskoll.occdev.axfood.se/axfood/axfood-product-scan/concepts?',
-    {
-      method: 'GET',
-      headers: {
-        authorization: head,
-      },
+  let apiConfig = config.conceptURL;
+  let conceptsURL = config.apiConfig.tempStoreApi.conceptListHandle;
+  fetch(apiConfig + conceptsURL, {
+    method: 'GET',
+    headers: {
+      authorization: head,
     },
-  )
+  })
     .then(response => {
       return response.json();
     })
