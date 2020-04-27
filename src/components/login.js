@@ -52,9 +52,28 @@ class Login extends React.Component {
               <TouchableOpacity
                 style={styles.login}
                 onPress={() => {
+                  if (!this.state.username || !this.state.password) {
+                    return Alert.alert('Please enter username and password');
+                  }
                   this.props.toggleHomeFlag(
                     this.state.username,
                     this.state.password,
+                    (status, response, error) => {
+                      if (status) {
+                        if (
+                          response &&
+                          response.headers &&
+                          response.headers.map &&
+                          response.headers.map.authorization
+                        ) {
+                          navigation.navigate('Concept');
+                        } else {
+                          Alert.alert('Error', 'Wrong Login Credentials');
+                        }
+                      } else {
+                        Alert.alert('Error', 'Wrong Login Credentials');
+                      }
+                    },
                   );
                 }}>
                 <Text style={styles.logintext}>LOGIN</Text>
@@ -74,26 +93,26 @@ class Login extends React.Component {
       </ImageBackground>
     );
   }
-  togglesuccessvalue() {
-    this.props.toggleSuccess();
-  }
-  static getDerivedStateFromProps(props, state) {
-    const {navigation} = props;
-    if (props.success === 'true') {
-      navigation.reset({
-        index: 0,
-        routes: [{name: 'Concept'}],
-      });
-    }
-    if (props.success === 'failed') {
-      Alert.alert('Error', 'Wrong Login Credentials', [
-        {
-          text: 'Try Again',
-          onPress: () => props.toggleSucess(),
-        },
-      ]);
-    }
-  }
+  // togglesuccessvalue() {
+  //   this.props.toggleSuccess();
+  // }
+  // static getDerivedStateFromProps(props, state) {
+  //   const {navigation} = props;
+  //   if (props.success === 'true') {
+  //     navigation.reset({
+  //       index: 0,
+  //       routes: [{name: 'Concept'}],
+  //     });
+  //   }
+  //   if (props.success === 'failed') {
+  //     Alert.alert('Error', 'Wrong Login Credentials', [
+  //       {
+  //         text: 'Try Again',
+  //         onPress: () => props.toggleSucess(),
+  //       },
+  //     ]);
+  //   }
+  // }
 }
 
 const styles = StyleSheet.create({

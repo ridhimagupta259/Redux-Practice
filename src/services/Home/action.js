@@ -7,13 +7,14 @@ import {
 } from './constant';
 import {AsyncStorage} from 'react-native';
 import config from '../../config/env';
+import {call} from 'react-native-reanimated';
 export const toggleSuccess = () => dispatch => {
   dispatch({
     type: TOGGLE_SUCCESS,
   });
 };
 
-export const toggleFlag = (username, password) => dispatch => {
+export const toggleFlag = (username, password, callback) => dispatch => {
   dispatch({
     type: LOGIN_START,
   });
@@ -28,11 +29,13 @@ export const toggleFlag = (username, password) => dispatch => {
   }).then(response => {
     if (!(response.status === 200)) {
       //   Alert.alert('wrong credentials');
+      callback && callback(false, response, null);
       dispatch({
         type: LOGIN_FAILED,
         data: {flag: false},
       });
     } else {
+      callback && callback(true, response, null);
       var temp = response.headers.map.authorization.split(' ');
       dispatch({
         type: LOGIN_SUCCESS,

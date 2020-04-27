@@ -29,12 +29,12 @@ const homeReducer = (state = initialState, action) => {
         ...state,
         header: action.data,
       };
-    case TOGGLE_SUCCESS:
-      return {
-        ...state,
-        isSuccess: 'false',
-        isLoading: 'false',
-      };
+    // case TOGGLE_SUCCESS:
+    //   return {
+    //     ...state,
+    //     isSuccess: 'false',
+    //     isLoading: 'false',
+    //   };
     default:
       return state;
   }
