@@ -3,6 +3,11 @@ export const colorConstants = {
   white: '#fff',
   greyColor: '#808080',
   greyStrip: '#b3b3b3',
+  shadow: '#000',
+  boxcolor: '#d4d4d4',
+  boxdata: '#858585',
+  productdetailtext: '#4a4a4a',
+  innerbox: '#f2f2f2',
 };
 
 export const imageConstants = {

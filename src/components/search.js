@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: colorConstants.white,
     alignItems: 'flex-end',
-    shadowColor: '#000',
+    shadowColor: colorConstants.shadow,
     shadowOffset: {width: 0, height: 0.7},
     shadowOpacity: 0.38,
     shadowRadius: 5.0,

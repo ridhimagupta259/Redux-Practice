@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {colorConstants, imageConstants} from '../config/constants';
 class Details extends React.Component {
   constructor(props) {
@@ -55,7 +48,7 @@ class Details extends React.Component {
   }
   componentDidMount() {
     const {route} = this.props;
-    if (this.state.input === true) {
+    if (this.state.input) {
       this.setState({finaldata: route.params.data, input: false});
     }
   }
@@ -78,11 +71,15 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 25,
     alignItems: 'center',
-    borderTopColor: '#d4d4d4',
+    borderTopColor: colorConstants.boxcolor,
     borderTopWidth: 1,
   },
-  boxDataText: {fontSize: 17, fontWeight: '600', color: '#858585'},
-  BoxHeadingText: {fontSize: 16, fontWeight: '500', color: '#858585'},
+  boxDataText: {fontSize: 17, fontWeight: '600', color: colorConstants.boxdata},
+  BoxHeadingText: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: colorConstants.boxdata,
+  },
   innerBoxQuantityView: {
     flex: 1,
     flexDirection: 'row',
@@ -96,19 +93,19 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: '400',
     marginTop: 10,
-    color: '#4a4a4a',
+    color: colorConstants.productdetailtext,
   },
   lastScannedText: {
     fontSize: 14,
     marginHorizontal: 35,
     fontWeight: '400',
-    color: '#4a4a4a',
+    color: colorConstants.productdetailtext,
     marginTop: 8,
   },
   boxDetailsView: {
     marginHorizontal: 35,
     flex: 0.15,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: colorConstants.innerbox,
     marginTop: 10,
     borderRadius: 3,
   },

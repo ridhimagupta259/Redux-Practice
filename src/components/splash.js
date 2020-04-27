@@ -25,12 +25,11 @@ class Splash extends React.Component {
       const value = await AsyncStorage.getItem('header');
       if (value !== null) {
         this.props.toggleSplash();
-        setTimeout(() => {
-          navigation.reset({
-            index: 0,
-            routes: [{name: 'Concept'}],
-          });
-        }, 3000);
+
+        navigation.reset({
+          index: 0,
+          routes: [{name: 'Concept'}],
+        });
       }
       if (value === null) {
         navigation.reset({
