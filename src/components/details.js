@@ -22,7 +22,9 @@ class Details extends React.Component {
               style={styles.backbutton}
             />
           </TouchableOpacity>
-          <Text style={styles.TitleTextView}>Product Details</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('animation')}>
+            <Text style={styles.TitleTextView}>Product Details</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.lowerNameView}>
           <Text style={styles.TextProductname}>{data.productName}</Text>

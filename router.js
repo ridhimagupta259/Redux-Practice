@@ -1,6 +1,6 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import Home from './src/components/home';
+import animation from './src/components/animation';
 import Listing from './src/components/listing';
 import Login from './src/components/login';
 import Search from './src/components/search';
@@ -47,6 +47,7 @@ function MyStack() {
         component={Details}
         options={{header: () => null}}
       />
+      <Stack.Screen name="animation" component={animation} />
     </Stack.Navigator>
   );
 }
